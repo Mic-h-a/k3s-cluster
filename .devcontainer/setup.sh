@@ -34,6 +34,10 @@ mv docker-compose "$BIN_DIR"
 curl -sSL https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz | tar xz
 mv k9s "$BIN_DIR"
 
+# Set global Git identity
+git config --global user.name "Micha van Haaren"
+git config --global user.email "michavanhaaren@gmail.com"
+
 # Verify installs
 echo "✅ Installed versions:"
 $BIN_DIR/kubectl version --client
