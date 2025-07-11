@@ -1,0 +1,16 @@
+{
+  "name": "k8s-devpod",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+  "ghcr.io/devcontainers/features/node:1": {
+    "version": "lts"
+  },
+  "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+  "ghcr.io/devcontainers/features/github-cli:1": {},
+  "ghcr.io/devcontainers/features/common-utils:1": {}
+},
+"postCreateCommand": "chmod +x .devcontainer/setup.sh && bash .devcontainer/setup.sh",
+"mounts": [
+  "source=${env:HOME}/.kube/config,target=/home/vscode/.kube/ config,type=bind,consistency=cached"
+  ]
+}
