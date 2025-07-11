@@ -38,6 +38,41 @@ mv k9s "$BIN_DIR"
 git config --global user.name "Micha van Haaren"
 git config --global user.email "michavanhaaren@gmail.com"
 
+# Create Neovim config directory
+mkdir -p ~/.config/nvim
+
+# Create minimal init.lua with packer and numbertoggle
+cat << 'EOF' > ~/.config/nvim/init.lua
+-- Auto-install packer if not present
+local fn = vim.fn
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+
+if fn.empty(fn.glob(install_path)) > 0 then
+  fn.system({
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  })
+  vim.cmd [[packadd packer.nvim]]
+end
+
+require("packer").startup(function(use)
+  use "wbthomason/packer.nvim"
+  use "sitiom/nvim-numbertoggle"
+end)
+
+-- Basic settings
+vim.o.number = true
+vim.o.relativenumber = true
+EOF
+
+# Install plugins headlessly
+nvim --headless +PackerSync +qa
+
+
 # Verify installs
 echo "✅ Installed versions:"
 $BIN_DIR/kubectl version --client
