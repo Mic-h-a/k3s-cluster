@@ -8,7 +8,7 @@
   "ghcr.io/devcontainers/features/docker-in-docker:2": {},
   "ghcr.io/devcontainers/features/github-cli:1": {},
   "ghcr.io/devcontainers/features/common-utils:1": {}
-},
+  },
 "postCreateCommand": "chmod +x .devcontainer/setup.sh && bash .devcontainer/setup.sh",
 "mounts": [
   "source=${localEnv:HOME}/.kube,target=/home/vscode/.kube,type=bind"
